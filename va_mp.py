@@ -25,20 +25,16 @@ plt.style.use('default')
 sns.set_palette("husl")
 
 try:
-    train_data = pd.read_csv(r'train.csv')
-    # test_data = pd.read_csv(r'Gucan/test.csv')
+    train_data = pd.read_csv(r'sample_train.csv')
     print(f"Eğitim satir sayisi: {train_data.shape[0]} sutun sayisi {train_data.shape[1]}")
-    # print(f"Test satir sayisi: {test_data.shape[0]} sutun sayisi {test_data.shape[1]}")
-    # print(train_data)
-    # print(train_data.columns.tolist())
     print(train_data.columns)
 except FileNotFoundError as e:
     print(f"Dosya bulunamadı: {e}")
     print("Örnek veri seti oluşturuluyor...")
 
 # on islemleri
-# reduce row size from 8.5m to 10k
-sample_data = train_data.sample(n=10000, random_state=42)  # random_state for reproducibility
+# reduce row size from 8.5m to 1k
+sample_data = train_data.sample(n=1000, random_state=42)  # random_state for reproducibility
 
 # null rows
 print("\nMissing values in train:\n", sample_data.isnull().sum().sort_values(ascending=False).head(20))
